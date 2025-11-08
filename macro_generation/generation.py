@@ -60,7 +60,7 @@ def build_axis_steps(length, preferred, minimum):
 
 
 def create_voronoi_regions(width, height, min_feature):
-    target_seed_count = random.randint(6, 9)
+    target_seed_count = random.randint(9, 12)
     seeds = generate_seed_points(width, height, target_seed_count, min_feature)
     tile_size = max(min_feature, min_metal6_spacing) * 2.0
     x_edges = build_axis_steps(width, tile_size, min_feature)
@@ -121,8 +121,24 @@ def create_voronoi_regions(width, height, min_feature):
                     )
                 )
 
-    merged = gdstk.boolean(borders, [], "or", layer=71, datatype=20)
-    return merged if merged else []
+    merged = gdstk.boolean(borders, [], "or", layer=71, datatype=20) or []
+
+    border_frame = gdstk.rectangle(
+        (0.0, 0.0),
+        (width, height),
+        layer=71,
+        datatype=20,
+    )
+    inner_frame = gdstk.rectangle(
+        (line_width, line_width),
+        (width - line_width, height - line_width),
+        layer=71,
+        datatype=20,
+    )
+    frame = gdstk.boolean(border_frame, inner_frame, "not", layer=71, datatype=20) or []
+
+    combined = gdstk.boolean(merged + frame, [], "or", layer=71, datatype=20)
+    return combined if combined else []
 
 
 voronoi_regions = create_voronoi_regions(total_width, total_height, min_metal6_width)
