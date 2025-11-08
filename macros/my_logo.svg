@@ -8,7 +8,7 @@
 </defs>
 <rect x="-27.5" y="-577.5" width="205" height="605" fill="#222222" stroke="none"/>
 <g id="my_logo" transform="scale(1 -1)">
-<polygon id="0x2272e770" class="l71d20" points="50,150 140,220 150,380 110,550 60,480 50,300"/>
-<polygon id="0x22827950" class="l235d4" points="0,0 40,0 40,40 0,40"/>
+<polygon id="0x1d2b2370" class="l71d20" points="50,150 120,150 120,250 100,250 100,350 150,350 150,550 60,550 60,450 80,450 80,300 50,300"/>
+<polygon id="0x1d38f6c0" class="l235d4" points="0,0 40,0 40,40 0,40"/>
 </g>
 </svg>

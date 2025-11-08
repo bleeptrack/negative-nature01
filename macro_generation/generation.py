@@ -23,10 +23,16 @@ cell = lib.new_cell("my_logo")
 
 right_overlay_points = [
     (5, 15),
-    (14, 22),
-    (15, 38),
-    (11, 55),
-    (6, 48),
+    (12, 15),
+    (12, 25),
+    (10, 25),
+    (10, 35),
+    (15, 35),
+    (15, 55),
+    (6, 55),
+    (6, 45),
+    (8, 45),
+    (8, 30),
     (5, 30),
 ]
 right_overlay = gdstk.Polygon(right_overlay_points, layer=71, datatype=20)
