@@ -21,23 +21,18 @@ lib = gdstk.Library()
 cell = lib.new_cell("my_logo")
 
 
-def generate_seed_points(width, height, count, margin, jitter=0.3):
-    cols = math.ceil(math.sqrt(count))
-    rows = math.ceil(count / cols)
-    cell_w = width / cols
-    cell_h = height / rows
+def generate_seed_points(width, height, count, margin):
     seeds = []
-    for r in range(rows):
-        for c in range(cols):
-            if len(seeds) >= count:
-                break
-            base_x = (c + 0.5) * cell_w
-            base_y = (r + 0.5) * cell_h
-            x = base_x + random.uniform(-jitter, jitter) * cell_w
-            y = base_y + random.uniform(-jitter, jitter) * cell_h
-            x = max(margin, min(width - margin, x))
-            y = max(margin, min(height - margin, y))
+    attempts = 0
+    max_attempts = count * 20
+    while len(seeds) < count and attempts < max_attempts:
+        attempts += 1
+        x = random.uniform(margin, width - margin)
+        y = random.uniform(margin, height - margin)
+        if all((sx - x) ** 2 + (sy - y) ** 2 >= (min_metal6_spacing * 2) ** 2 for sx, sy in seeds):
             seeds.append((x, y))
+    while len(seeds) < count:
+        seeds.append((random.uniform(margin, width - margin), random.uniform(margin, height - margin)))
     return seeds
 
 
@@ -60,7 +55,7 @@ def build_axis_steps(length, preferred, minimum):
 
 
 def create_voronoi_regions(width, height, min_feature):
-    target_seed_count = random.randint(9, 12)
+    target_seed_count = 10
     seeds = generate_seed_points(width, height, target_seed_count, min_feature)
     tile_size = max(min_feature, min_metal6_spacing) * 2.0
     x_edges = build_axis_steps(width, tile_size, min_feature)
@@ -81,7 +76,7 @@ def create_voronoi_regions(width, height, min_feature):
             )
             assignments[xi][yi] = nearest
 
-    line_width = max(min_feature * 1.6, min_feature + 0.5)
+    line_width = max(min_feature * 1.2, min_feature + 0.2)
     half_line = line_width / 2.0
     borders = []
 
