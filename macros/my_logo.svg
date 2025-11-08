@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="205" height="605" viewBox="-27.5 -577.5 205 605">
+<defs>
+<style type="text/css">
+.l235d4 {stroke: #0067A5; fill: #0067A5; fill-opacity: 0.5;}
+.l71d20 {stroke: #B3446C; fill: #B3446C; fill-opacity: 0.5;}
+</style>
+</defs>
+<rect x="-27.5" y="-577.5" width="205" height="605" fill="#222222" stroke="none"/>
+<g id="my_logo" transform="scale(1 -1)">
+<polygon id="0x2272e770" class="l71d20" points="50,150 140,220 150,380 110,550 60,480 50,300"/>
+<polygon id="0x22827950" class="l235d4" points="0,0 40,0 40,40 0,40"/>
+</g>
+</svg>
